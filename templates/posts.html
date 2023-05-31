@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    
+
+
+
+
+<div class="col-md-6 offset-md-3 mt-5">
+  
+   <form method="POST">{% csrf_token %}
+    <div class="form-group">
+      {% if request.user.is_authenticated %}
+      <label for="exampleInputName">Name</label>
+      <input readonly type="text" name="productname" class="form-control" id="exampleInputName" placeholder="{{ request.user.first_name}}  {{ request.user.last_name}} " required="required">
+      {% endif %}
+    </div>
+     <div class="form-group">
+       <label for="exampleInputName">Product Name</label>
+       <input type="text" name="productname" class="form-control" id="exampleInputName" placeholder="Enter Product Name" required="required">
+     </div>
+     <div class="form-group">
+      <label for="exampleFormControlSelect1">Category</label>
+      <select class="form-control" id="category" name="category" required="required">
+        {% for categorys in category %}
+          <option value="{{ categorys.id }}">{{categorys.name }}</option>
+          {% endfor %}   
+      </select>
+    </div>
+
+     <div class="form-group">
+      <label for="exampleInputName">Product Price</label>
+      <input type="text" name="productprice" class="form-control" id="exampleInputName" placeholder="Enter Product Price" required="required">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputName">Discount Price</label>
+      <input type="text" name="discountprice" class="form-control" id="exampleInputName" placeholder="Discount Price" required="">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputName">Description:</label>
+      <input type="text" name="description" class="form-control" id="exampleInputName" placeholder="Description:">
+    </div>
+    <div class="form-group">
+      {% for colors in color %}
+      <label for="exampleFormControlSelect1">Color</label>
+      <select class="form-control" id="exampleFormControlSelect1" name="color" required="required">
+        <option>{{colors}}</option>
+      </select>
+      {% endfor %}
+    </div>
+     <hr>
+
+     <div class="form-group">
+      <label for="files">Files to Upload</label>
+      <input type="file" name="files" id="files" multiple class="form-control">
+    </div>
+
+     <hr>
+     <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+</div> 
+  
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

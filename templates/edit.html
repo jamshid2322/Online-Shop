@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div style="width: 80%; margin: 0 auto; margin-top: 100px; margin-bottom: 100px;">
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">User Name : </label>
+          <input readonly value="{{ items.user.first_name }} {{ items.user.last_name }}" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlInput1">User Phone Number : </label>
+          <input readonly value="{{ items.user }}" class="form-control" id="exampleFormControlInput1">
+        </div>
+        
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Product : </label>
+          <textarea readonly typname="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ items.product.name }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Quantity : </label>
+            <textarea  name="qty" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ items.qty }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
